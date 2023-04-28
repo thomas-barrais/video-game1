@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style-snake.css">
+  <title>Jeu Snake</title>
+</head>
+<body>
+  <header>
+    <h1>Jeu Snake</h1>
+    <nav>
+      <ul class="navbar">
+        <li>
+          <a href="../accueil/index.html">Acceuil</a>
+          <ul>
+            <li><a href="snake.html">Jeu snake</a></li>
+            <li><a href="../tictactoe/tictactoe.html">Tic Tac Toe</a></li>
+        </ul>
+        </li>
+        <li><a href="https://fr.linkedin.com/in/thomas-barrais-3362a0220" target="_blank">Notre equipe</a></li>
+        <li><a href="https://thomasbarrais.fr/" target="_blank">Contact</a></li>
+      </ul>
+    </nav>
+  </header>  
+  <canvas id="gameCanvas" width="600" height="400"></canvas>
+  <div class="container">
+    <button id="playButton" onclick="togglePlay()">Play</button>
+  </div>
+  <footer>
+    <p>&#9400; Made by Thomas</p>
+  </footer>
+  <script src="snake.js"></script>
+</body>
+</html>
