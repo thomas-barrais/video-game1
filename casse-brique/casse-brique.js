@@ -227,6 +227,43 @@ function handleTouchEnd(event) {
 this.touchStart = false;
 }
 
+canvas.addEventListener('touchstart', function(event) {
+  // récupérer la position de départ
+  const touchX = event.touches[0].clientX;
+  const touchY = event.touches[0].clientY;
+
+  // vérifier si la pression est sur l'élément
+  if (touchX >= posX && touchX <= posX + size && touchY >= posY && touchY <= posY + size) {
+    // écouter l'événement de déplacement tactile
+    canvas.addEventListener('touchmove', moveHandler);
+  }
+});
+
+// fonction de déplacement
+function moveHandler(event) {
+  // empêcher le défilement de la page
+  event.preventDefault();
+
+  // récupérer la nouvelle position du toucher
+  const touchX = event.touches[0].clientX;
+  const touchY = event.touches[0].clientY;
+
+  // calculer la distance parcourue
+  const deltaX = touchX - posX;
+
+  // mettre à jour la position de l'élément
+  posX += deltaX;
+
+  // dessiner l'élément à sa nouvelle position
+  draw();
+}
+
+// écouter l'événement de relâchement tactile
+canvas.addEventListener('touchend', function() {
+  // arrêter d'écouter l'événement de déplacement tactile
+  canvas.removeEventListener('touchmove', moveHandler);
+});
+
 // Gestion du bouton Play/Pause
 let playPauseButton = document.getElementById("play-pause");
 let interval;
