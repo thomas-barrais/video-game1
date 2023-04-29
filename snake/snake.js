@@ -24,7 +24,16 @@ function gameLoop() {
   moveSnake();
   draw();
   checkCollisions();
+  if (score % 5 === 0) {
+    clearInterval(gameLoopId);
+    if (score >= 35) {
+      gameLoopId = setInterval(gameLoop, 80 - (35/5) * 10);
+    } else {
+      gameLoopId = setInterval(gameLoop, 80 - (score / 5) * 10);
+    }
+  }
 }
+
 
 function moveSnake() {
   var head = { x: snake[0].x, y: snake[0].y };
@@ -52,9 +61,15 @@ function moveSnake() {
 }
 
 function generateApple() {
-  apple.x = Math.floor(Math.random() * ((canvas.width-10) / 10)) * 10;
-  apple.y = Math.floor(Math.random() * ((canvas.height-10) / 10)) * 10;
+  var appleX, appleY;
+  do {
+    appleX = Math.floor(Math.random() * ((canvas.width - 70) / 10) + 1) * 10;
+    appleY = Math.floor(Math.random() * ((canvas.height - 70) / 10) + 1) * 10;
+  } while (snake.some(part => part.x === appleX && part.y === appleY));
+  apple.x = appleX;
+  apple.y = appleY;
 }
+
 
 function draw() {
   canvasContext.clearRect(0, 0, canvas.width, canvas.height);
@@ -67,6 +82,8 @@ function draw() {
   canvasContext.fillStyle = "black";
   canvasContext.font = "20px Arial";
   canvasContext.fillText("Score: " + score, 10, 20);
+  var bestScore = localStorage.getItem("bestScore");
+  canvasContext.fillText("Meilleur Score: " + (bestScore || 0), 10, 40);
 }
 
 function checkCollisions() {
@@ -84,9 +101,13 @@ function checkCollisions() {
 function gameOver() {
   clearInterval(gameLoopId);
   isPlaying = false;
-  alert("Game over! Your score was " + score);
+  var bestScore = localStorage.getItem("bestScore");
+  if (!bestScore || score > bestScore) {
+    localStorage.setItem("bestScore", score);
+    bestScore = score;
+  }
+  alert("Game over! Tu as fait un score de " + score + " et ton meilleur score est " + bestScore);
   location.reload();
-  // document.body.style.overflow = "hidden";
 }
 
 function handleKeyPress(event) {
