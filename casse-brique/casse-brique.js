@@ -227,39 +227,6 @@ function handleTouchEnd(event) {
 this.touchStart = false;
 }
 
-document.addEventListener('touchstart', function(event) {
-  // récupérer la position de départ
-  const touchX = event.touches[0].clientX;
-  const touchY = event.touches[0].clientY;
-
-  // vérifier si la pression est sur l'élément
-  if (touchX >= paddleX && touchX <= paddleX + paddleWidth && touchY >= 0 && touchY <= 0 + paddleHeight) {
-    // écouter l'événement de déplacement tactile
-    document.addEventListener('touchmove', moveHandler);
-
-    // empêcher le défilement de la page
-    event.preventDefault();
-  }
-});
-
-// fonction de déplacement
-function moveHandler(event) {
-  // empêcher le défilement de la page
-  event.preventDefault();
-
-  // récupérer la nouvelle position du toucher
-  const touchX = event.touches[0].clientX;
-
-  // calculer la distance parcourue
-  const deltaX = touchX - paddleX;
-
-  // mettre à jour la position de l'élément
-  posX += deltaX;
-
-  // dessiner l'élément à sa nouvelle position
-  draw();
-}
-
 // Gestion du bouton Play/Pause
 let playPauseButton = document.getElementById("play-pause");
 let interval;
