@@ -12,6 +12,9 @@ window.onload = function () {
   canvasContext = canvas.getContext("2d");
   window.addEventListener("keydown", handleKeyPress);
   draw();
+  canvas.addEventListener('touchstart', drawOnCanvas);
+  canvas.addEventListener('touchmove', drawOnCanvas);
+  canvas.addEventListener('touchend', drawOnCanvas);
 };
 
 function gameLoop() {
@@ -121,6 +124,3 @@ function drawOnCanvas(e) {
   }
 }
 
-canvas.addEventListener('touchstart', drawOnCanvas);
-canvas.addEventListener('touchmove', drawOnCanvas);
-canvas.addEventListener('touchend', drawOnCanvas);
