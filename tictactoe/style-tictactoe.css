@@ -101,12 +101,21 @@ nav ul ul li a:after {
   transition: transform 0.3s ease-out;
 }
 
-.container {
+/* .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 1rem auto;
+} */
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
 }
+
 
 .box {
   width: 100px;
