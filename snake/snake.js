@@ -194,6 +194,7 @@ function gameOver() {
   isPlaying = false;
   alert("Game over! Your score was " + score);
   location.reload();
+  document.body.style.overflow = "hidden";
 }
 
 function handleKeyPress(event) {
@@ -234,15 +235,13 @@ function handleTouchMove(event) {
     direction = "left";
   }
 } else {
-  // Déplacement vertical
+// Déplacement vertical
   if (dy > 0) {
     direction = "down";
   } else {
     direction = "up";
   }
 }
-
-// Réinitialise le toucher
 this.touchX = null;
 this.touchY = null;
 this.touchStart = false;
@@ -276,7 +275,7 @@ function togglePlay() {
     document.getElementById("playButton").innerHTML = "Play";
   } else {
     gameLoopId = setInterval(gameLoop, 80);
-isPlaying = true;
-document.getElementById("playButton").innerHTML = "Pause";
-}
+    isPlaying = true;
+    document.getElementById("playButton").innerHTML = "Pause";
+  }
 }
