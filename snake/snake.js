@@ -7,19 +7,6 @@ var score = 0;
 var isPlaying = false;
 var gameLoopId;
 
-window.addEventListener('load', function() {
-  document.body.style.overflow = 'hidden';
-});
-
-window.onload = function () {
-  canvas = document.getElementById("gameCanvas");
-  canvasContext = canvas.getContext("2d");
-  window.addEventListener("keydown", handleKeyPress);
-  canvas.addEventListener("touchstart", handleTouchStart);
-  canvas.addEventListener("touchmove", handleTouchMove);
-  draw();
-};
-
 function gameLoop() {
   moveSnake();
   draw();
