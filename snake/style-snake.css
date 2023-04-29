@@ -142,3 +142,10 @@ footer {
   text-align: center;
   font-size: 100%;
 }
+
+@media (max-width: 800px) {
+  canvas {
+    width: 100%;
+    height: auto;
+  }
+}
