@@ -4,9 +4,12 @@
 }
 
 body {
+  min-height: 100vh;
+  position: relative;
   background-color: #37474f;
   color: #fff;
   font-family: Arial, sans-serif;
+
 }
 
 header {
