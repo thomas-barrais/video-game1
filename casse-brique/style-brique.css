@@ -104,7 +104,12 @@ nav ul ul li a:after {
 
 canvas {
   display: block;
-  margin: 0 auto;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   background-color: #eee;
   border: 1px solid #333;
 }
@@ -162,7 +167,7 @@ footer {
   font-size: 100%;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 800px) {
   canvas {
     width: 100%;
     height: auto;
