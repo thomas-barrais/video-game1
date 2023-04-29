@@ -12,9 +12,6 @@ window.onload = function () {
   canvasContext = canvas.getContext("2d");
   window.addEventListener("keydown", handleKeyPress);
   draw();
-  canvas.addEventListener('touchstart', drawOnCanvas);
-  canvas.addEventListener('touchmove', drawOnCanvas);
-  canvas.addEventListener('touchend', drawOnCanvas);
 };
 
 function gameLoop() {
@@ -112,15 +109,3 @@ isPlaying = true;
 document.getElementById("playButton").innerHTML = "Pause";
 }
 }
-
-function drawOnCanvas(e) {
-  e.preventDefault();
-  if (e.touches.length == 1) { // Un doigt
-    var touch = e.touches[0];
-    canvasContext.fillStyle = 'black';
-    canvasContext.beginPath();
-    canvasContext.arc(touch.pageX, touch.pageY, 10, 0, 2 * Math.PI);
-    canvasContext.fill();
-  }
-}
-
