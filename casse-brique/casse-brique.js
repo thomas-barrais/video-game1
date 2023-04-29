@@ -183,6 +183,50 @@ function mouseMoveHandler(e) {
   }
 }
 
+function handleTouchStart(event) {
+  var x = event.touches[0].clientX;
+  var y = event.touches[0].clientY;
+  this.touchStart = { x: x, y: y };
+}
+
+function handleTouchMove(event) {
+  if (this.touchStart) {
+  var x = event.touches[0].clientX - canvas.offsetLeft;
+  var y = event.touches[0].clientY - canvas.offsetTop;
+  var dx = x - this.touchX;
+  var dy = y - this.touchY;
+  // Détermine la direction de déplacement du toucher
+  if (Math.abs(dx) > Math.abs(dy)) {
+  // Déplacement horizontal
+  if (dx > 0) {
+    direction = "right";
+  } else {
+    direction = "left";
+  }
+} else {
+// Déplacement vertical
+  if (dy > 0) {
+    direction = "down";
+  } else {
+    direction = "up";
+  }
+}
+this.touchX = null;
+this.touchY = null;
+this.touchStart = false;
+}
+}
+
+function handleTouchStart(event) {
+this.touchStart = true;
+this.touchX = event.touches[0].clientX - canvas.offsetLeft;
+this.touchY = event.touches[0].clientY - canvas.offsetTop;
+}
+
+function handleTouchEnd(event) {
+this.touchStart = false;
+}
+
 // Gestion du bouton Play/Pause
 let playPauseButton = document.getElementById("play-pause");
 let interval;
@@ -204,5 +248,3 @@ playPauseButton.onclick = function() {
     pause();
   }
 };
-
-// Lancement du jeu
