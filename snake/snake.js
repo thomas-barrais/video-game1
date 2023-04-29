@@ -194,7 +194,7 @@ function gameOver() {
   isPlaying = false;
   alert("Game over! Your score was " + score);
   location.reload();
-  document.body.style.overflow = "hidden";
+  // document.body.style.overflow = "hidden";
 }
 
 function handleKeyPress(event) {

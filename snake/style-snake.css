@@ -103,6 +103,10 @@ nav ul ul li a:after {
   transition: transform 0.3s ease-out;
 }
 
+.canvas-container {
+  overflow: hidden;
+}
+
 canvas {
   display: inline-block;
   margin: auto;
