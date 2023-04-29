@@ -227,15 +227,18 @@ function handleTouchEnd(event) {
 this.touchStart = false;
 }
 
-canvas.addEventListener('touchstart', function(event) {
+document.addEventListener('touchstart', function(event) {
   // récupérer la position de départ
   const touchX = event.touches[0].clientX;
   const touchY = event.touches[0].clientY;
 
   // vérifier si la pression est sur l'élément
-  if (touchX >= posX && touchX <= posX + size && touchY >= posY && touchY <= posY + size) {
+  if (touchX >= paddleX && touchX <= paddleX + paddleWidth && touchY >= 0 && touchY <= 0 + paddleHeight) {
     // écouter l'événement de déplacement tactile
-    canvas.addEventListener('touchmove', moveHandler);
+    document.addEventListener('touchmove', moveHandler);
+
+    // empêcher le défilement de la page
+    event.preventDefault();
   }
 });
 
@@ -246,10 +249,9 @@ function moveHandler(event) {
 
   // récupérer la nouvelle position du toucher
   const touchX = event.touches[0].clientX;
-  const touchY = event.touches[0].clientY;
 
   // calculer la distance parcourue
-  const deltaX = touchX - posX;
+  const deltaX = touchX - paddleX;
 
   // mettre à jour la position de l'élément
   posX += deltaX;
@@ -257,12 +259,6 @@ function moveHandler(event) {
   // dessiner l'élément à sa nouvelle position
   draw();
 }
-
-// écouter l'événement de relâchement tactile
-canvas.addEventListener('touchend', function() {
-  // arrêter d'écouter l'événement de déplacement tactile
-  canvas.removeEventListener('touchmove', moveHandler);
-});
 
 // Gestion du bouton Play/Pause
 let playPauseButton = document.getElementById("play-pause");
